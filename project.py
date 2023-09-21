@@ -52,14 +52,22 @@ def send_assignment_notif(assignments, receiver_email):
 
         # Check if the event is in the future or due today
         event_date = datetime.date(year, month, day)
-        if event_date > datetime.date.today():
-            send_email(receiver_email, "Assignment Notification", event_description)
-        elif event_date == datetime.date.today():
-            send_email(receiver_email, "DUE TODAY", event_description)
+
+        if assignment_type == 'exam':
+            exam_notif_date = event_date - datetime.timedelta(days=5)
+            if datetime.date.today() == exam_notif_date:
+                
+                send_email(receiver_email, "Exam Notification", event_description)
+
+        else:
+                if event_date > datetime.date.today():
+                    send_email(receiver_email, "Assignment Notification", event_description)
+                elif event_date == datetime.date.today():
+                    send_email(receiver_email, "DUE TODAY", event_description)
 
 # List of Assignments
 assignments = [
-    (2023, 9, 20, 'exam', 'Midterm Exam'),
+    (2023, 9, 26, 'exam', 'Midterm Exam'),
     (2023, 10, 15, 'quiz', 'Quiz 1'),
     (2023, 11, 5, 'homework', 'Homework 3'),
     (2023, 8, 13, 'homework', 'Homework 17'),
