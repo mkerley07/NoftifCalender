@@ -55,9 +55,19 @@ def send_assignment_notif(assignments, receiver_email):
 
         if assignment_type == 'exam':
             exam_notif_date = event_date - datetime.timedelta(days=5)
-            if datetime.date.today() == exam_notif_date:
+            if datetime.date.today() < event_date and datetime.date.today() >= exam_notif_date:
                 
                 send_email(receiver_email, "Exam Notification", event_description)
+            elif event_date == datetime.date.today():
+                    send_email(receiver_email, "EXAM TODAY", event_description)
+        
+        elif assignment_type == 'quiz':
+            quiz_notif_date = event_date - datetime.timedelta(days=3)
+            if datetime.date.today() < event_date and datetime.date.today() >= quiz_notif_date:
+                
+                send_email(receiver_email, "Quiz Notification", event_description)
+            elif event_date == datetime.date.today():
+                    send_email(receiver_email, "QUIZ TODAY", event_description)
 
         else:
                 if event_date > datetime.date.today():
@@ -67,7 +77,7 @@ def send_assignment_notif(assignments, receiver_email):
 
 # List of Assignments
 assignments = [
-    (2023, 9, 26, 'exam', 'Midterm Exam'),
+    (2023, 9, 21, 'exam', 'Midterm Exam'),
     (2023, 10, 15, 'quiz', 'Quiz 1'),
     (2023, 11, 5, 'homework', 'Homework 3'),
     (2023, 8, 13, 'homework', 'Homework 17'),
