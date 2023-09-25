@@ -81,9 +81,9 @@ def send_assignment_notif(assignments, receiver_email):
 
 # List of Assignments
 assignments = [
-    (2023, 9, 23, 'exam', 'Midterm Exam'),
-    (2023, 9, 23, 'quiz', 'Quiz 1'),
-    (2023, 9, 23, 'homework', 'Homework 3'),
+    (2023, 9, 27, 'exam', 'Midterm Exam'),
+    (2023, 9, 27, 'quiz', 'Quiz 1'),
+    (2023, 9, 28, 'homework', 'Homework 3'),
     (2023, 8, 13, 'homework', 'Homework 17'),
 ]
 
