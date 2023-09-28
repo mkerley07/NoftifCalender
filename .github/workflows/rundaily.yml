@@ -18,7 +18,11 @@ jobs:
             GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
             echo "$GOOGLE_CREDENTIALS_JSON" > credentials.json
-            gcloud auth activate-service-account --key-file=credentials.json
+            if [ -s "credentials.json" ]; then
+                  gcloud auth activate-service-account --key-file=credentials.json
+            else
+              echo "Error: credentials.json is empty or not found."
+              exit 1
 
       - name: Set up Python
         uses: actions/setup-python@v2
