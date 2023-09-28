@@ -1,3 +1,4 @@
+import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import calendar
@@ -36,7 +37,17 @@ def send_email(receiver_email, subject, message):
 
 # Define the scope and credentials file path
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials = ServiceAccountCredentials.from_json_keyfile_name("C:/Users/Mkerl/Downloads/calendernotif-400322-015ca3a312f6.json", scope)
+credentials = None
+
+# Check if running in GitHub Actions environment
+if 'GITHUB_ACTIONS' in os.environ:
+    # Load credentials from a GitHub Actions secret
+    credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_json, scope)
+else:
+    # Load credentials from a local file
+    credentials_path = "C:/Users/Mkerl/Downloads/calendernotif-400322-015ca3a312f6.json"
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
 
 # Authenticate using the credentials
 gc = gspread.authorize(credentials)
