@@ -43,7 +43,7 @@ credentials = None
 if 'GITHUB_ACTIONS' in os.environ:
     # Load credentials from a GitHub Actions secret
     credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_json, scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_json, scope)
 else:
     # Load credentials from a local file
     credentials_path = "C:/Users/Mkerl/Downloads/calendernotif-400322-015ca3a312f6.json"
