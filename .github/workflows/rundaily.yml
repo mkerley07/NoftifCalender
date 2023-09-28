@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Use the Secret
+        env:
+          MY_SECRET_API_KEY: ${{ secrets.GOOGLE_CREDENTIALS_JSON }} 
+        run: |
+          echo "My API Key: $MY_SECRET_API_KEY"
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
