@@ -17,11 +17,11 @@ jobs:
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
-          echo "$GOOGLE_CREDENTIALS_JSON" > credentials.json
-          if [ -s "credentials.json" ]; then
+          echo "$GOOGLE_CREDENTIALS_JSON" > google-credentials.json
+          if [ -s "google-credentials.json" ]; then
               gcloud auth activate-service-account --key-file=credentials.json
           else
-            echo "Error: credentials.json is empty or not found."
+            echo "Error: google-credentials.json is empty or not found."
             exit 1
           fi
 
