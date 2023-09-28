@@ -15,9 +15,10 @@ jobs:
 
       - name: Use the Secret
         env:
-          MY_SECRET_API_KEY: ${{ secrets.GOOGLE_CREDENTIALS_JSON }} 
+            GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: |
-          echo "My API Key: $MY_SECRET_API_KEY"
+            echo "$GOOGLE_CREDENTIALS_JSON" > credentials.json
+            gcloud auth activate-service-account --key-file=credentials.json
 
       - name: Set up Python
         uses: actions/setup-python@v2
