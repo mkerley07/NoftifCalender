@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "$GOOGLE_CREDENTIALS_JSON" > google-credentials.json
           if [ -s "google-credentials.json" ]; then
-              gcloud auth activate-service-account --key-file=credentials.json
+              gcloud auth activate-service-account --key-file=google-credentials.json
           else
             echo "Error: google-credentials.json is empty or not found."
             exit 1
