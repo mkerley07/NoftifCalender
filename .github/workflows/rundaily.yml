@@ -16,6 +16,7 @@ jobs:
       - name: Use the Secret
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+
         run: |
           echo "$GOOGLE_CREDENTIALS_JSON" > google-credentials.json
           if [ -s "google-credentials.json" ]; then
