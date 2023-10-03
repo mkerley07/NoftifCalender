@@ -23,7 +23,7 @@ jobs:
 
      
       - name: Read Google Credentials
-        run: echo "$(<google-credentials.json)" > credentials.json
+        run: echo "$GOOGLE_CREDENTIALS_JSON" > credentials.json
 
       - name: Run Python Script
         run: |
