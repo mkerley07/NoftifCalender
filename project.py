@@ -116,7 +116,7 @@ def send_assignment_notif(assignments, receiver_email):
                 send_email(receiver_email, "Homework Notification", event_description)
             elif today == event_date:
                 send_email(receiver_email, "HOMEWORK DUE TODAY", event_description)
-    print(event_description)
+    
 
 
 
