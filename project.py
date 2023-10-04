@@ -49,6 +49,8 @@ else:
     credentials_path = "C:/Users/Mkerl/Downloads/calendernotif-400322-015ca3a312f6.json"
     credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
 
+print(credentials_json)
+
 # Authenticate using the credentials
 gc = gspread.authorize(credentials)
     
