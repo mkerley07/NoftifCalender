@@ -12,19 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Use the Secret
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: |
-          echo "$GOOGLE_CREDENTIALS_JSON" > google-credentials.json
-          if [ -s "google-credentials.json" ]; then
-              gcloud auth activate-service-account --key-file=credentials.json
-          else
-            echo "Error: google-credentials.json is empty or not found."
-            exit 1
-          fi
-
+         
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -34,5 +22,10 @@ jobs:
         run: pip install gspread oauth2client
 
      
+      - name: Read Google Credentials
+        run: echo "$GOOGLE_CREDENTIALS_JSON" > credentials.json
+
       - name: Run Python Script
-        run: python project.py # Replace 'your_script.py' with the name of your Python script
+        run: |
+          cat credentials.json  # Check the content of credentials.json (for debugging purposes)
+          python project.py
